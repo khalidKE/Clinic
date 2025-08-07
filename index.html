@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic - Smart Medical Appointment & Case Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>Clinic</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Smart Medical Care
+                    <span class="gradient-text">At Your Fingertips</span>
+                </h1>
+                <p class="hero-description">
+                    Revolutionary digital platform connecting patients with doctors through AI-powered
+                    appointment booking, comprehensive medical records, and intelligent health management.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">
+                        <i class="fas fa-mobile-alt"></i>
+                        Get Started
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </button>
+                </div>
+                <div class="app-badges">
+                    <div class="badge google-play">
+                        <i class="fab fa-google-play"></i>
+                        <div>
+                            <span>Get it on</span>
+                            <strong>Google Play</strong>
+                        </div>
+                    </div>
+                    <div class="badge app-store">
+                        <i class="fab fa-apple"></i>
+                        <div>
+                            <span>Download on the</span>
+                            <strong>App Store</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-interface">
+                            <div class="status-bar"></div>
+                            <div class="app-header">
+                                <h3>Find Your Doctor</h3>
+                            </div>
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <span>Search by specialty...</span>
+                            </div>
+                            <div class="doctor-cards">
+                                <div class="doctor-card">
+                                    <div class="doctor-avatar"></div>
+                                    <div class="doctor-info">
+                                        <h4>Dr. Sarah Johnson</h4>
+                                        <p>Cardiologist</p>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <span>4.9</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-elements">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Smart Booking</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-robot"></i>
+                        <span>AI Assistant</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-file-medical"></i>
+                        <span>Medical Records</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comprehensive Healthcare Solutions</h2>
+                <p>Discover how our platform revolutionizes medical care for both patients and healthcare providers</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Patient Features -->
+                <div class="feature-category">
+                    <h3>For Patients</h3>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-search-location"></i>
+                            </div>
+                            <h4>Smart Doctor Discovery</h4>
+                            <p>Find the perfect doctor by specialty, location, and ratings with our intelligent matching
+                                system.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-file-medical-alt"></i>
+                            </div>
+                            <h4>Digital Medical Records</h4>
+                            <p>Secure, comprehensive medical history accessible to you and your healthcare providers.
+                            </p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h4>Smart Appointment Booking</h4>
+                            <p>Book appointments with queue management and customizable reminder notifications.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h4>Emergency Location Support</h4>
+                            <p>Find the nearest available doctor when you're in an unfamiliar location.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>AI Symptom Checker</h4>
+                            <p>Describe your symptoms and get intelligent suggestions for conditions and specialists.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Features -->
+                <div class="feature-category">
+                    <h3>For Healthcare Providers</h3>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-clinic-medical"></i>
+                            </div>
+                            <h4>Clinic Management</h4>
+                            <p>Manage your clinic availability and schedules with real-time updates.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h4>Professional Profile</h4>
+                            <p>Showcase your expertise, credentials, and patient reviews in a comprehensive profile.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <h4>Patient File Access</h4>
+                            <p>Access complete patient medical history before consultations for better diagnosis.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <h4>Medication Safety</h4>
+                            <p>AI-powered drug interaction checker prevents conflicting prescriptions.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Patient Analytics</h4>
+                            <p>Track patient outcomes and identify health risks with predictive analytics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Clinic Works</h2>
+                <p>Simple steps to better healthcare management</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Register & Create Profile</h3>
+                        <p>Sign up and create your comprehensive medical profile with health history and preferences.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Find Your Doctor</h3>
+                        <p>Use our AI-powered search to find the perfect healthcare provider based on your needs.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Book Appointment</h3>
+                        <p>Schedule your appointment with real-time availability and queue management.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Receive Care</h3>
+                        <p>Get personalized treatment with your complete medical history at the doctor's fingertips.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section class="ai-features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powered by Artificial Intelligence</h2>
+                <p>Advanced AI technology enhancing every aspect of your healthcare experience</p>
+            </div>
+
+            <div class="ai-grid">
+                <div class="ai-card">
+                    <div class="ai-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Smart Symptom Analysis</h3>
+                    <p>AI analyzes your symptoms and provides intelligent health insights and specialist
+                        recommendations.</p>
+                </div>
+
+                <div class="ai-card">
+                    <div class="ai-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Medication Safety</h3>
+                    <p>Prevent dangerous drug interactions with our comprehensive medication conflict checker.</p>
+                </div>
+
+                <div class="ai-card">
+                    <div class="ai-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Risk Prediction</h3>
+                    <p>Identify potential health risks before symptoms appear using predictive analytics.</p>
+                </div>
+
+                <div class="ai-card">
+                    <div class="ai-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Smart Assistant</h3>
+                    <p>24/7 AI chatbot handles appointments, questions, and provides instant health guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-content">
+                <div class="download-text">
+                    <h2>Get Clinic on Your Mobile Device</h2>
+                    <p>Download our mobile app for iOS and Android to access healthcare services anytime, anywhere.
+                        Experience the full power of our platform in the palm of your hand.</p>
+
+                    <div class="download-features">
+                        <div class="download-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Instant appointment booking</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Real-time notifications</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Offline medical records access</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Emergency location services</span>
+                        </div>
+                    </div>
+
+                    <div class="download-buttons">
+                        <a href="#" class="download-btn google-play-btn">
+                            <i class="fab fa-google-play"></i>
+                            <div>
+                                <span>Get it on</span>
+                                <strong>Google Play</strong>
+                            </div>
+                        </a>
+                        <a href="#" class="download-btn app-store-btn">
+                            <i class="fab fa-apple"></i>
+                            <div>
+                                <span>Download on the</span>
+                                <strong>App Store</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="download-visual">
+                    <div class="phones-mockup">
+                        <div class="phone phone-1">
+                            <div class="phone-screen">
+                                <div class="app-screen">
+                                    <div class="screen-header">
+                                        <h4>My Appointments</h4>
+                                    </div>
+                                    <div class="appointment-list">
+                                        <div class="appointment-item">
+                                            <div class="appointment-time">10:30 AM</div>
+                                            <div class="appointment-doctor">Dr. Smith</div>
+                                        </div>
+                                        <div class="appointment-item">
+                                            <div class="appointment-time">2:15 PM</div>
+                                            <div class="appointment-doctor">Dr. Johnson</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone phone-2">
+                            <div class="phone-screen">
+                                <div class="app-screen">
+                                    <div class="screen-header">
+                                        <h4>AI Health Assistant</h4>
+                                    </div>
+                                    <div class="chat-interface">
+                                        <div class="chat-message bot">
+                                            <p>How can I help you today?</p>
+                                        </div>
+                                        <div class="chat-message user">
+                                            <p>I have a headache</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>Clinic</span>
+                    </div>
+                    <p>Revolutionizing healthcare through intelligent technology and seamless patient-doctor
+                        connections.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="#">For Patients</a></li>
+                        <li><a href="#">For Doctors</a></li>
+                        <li><a href="#">For Clinics</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@clinic.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Healthcare St, Medical City</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Clinic. All rights reserved. | Transforming Healthcare Through Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
