@@ -109,19 +109,38 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     });
 });
 
-// Smooth scrolling for navigation links
+// Enhanced smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const headerOffset = 80; // Account for fixed navbar
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
         }
     });
 });
+
+// Enhanced scrollToSection function
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const headerOffset = 80;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
 
 // Navbar background change on scroll
 window.addEventListener('scroll', () => {
@@ -389,6 +408,8 @@ scrollToTopBtn.style.cssText = `
     transition: all 0.3s ease;
     z-index: 1000;
     box-shadow: var(--shadow-lg);
+    transform: scale(1);
+    backdrop-filter: blur(10px);
 `;
 
 document.body.appendChild(scrollToTopBtn);
@@ -408,6 +429,12 @@ scrollToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    
+    // Add visual feedback
+    scrollToTopBtn.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+        scrollToTopBtn.style.transform = 'scale(1)';
+    }, 150);
 });
 
 // Initialize animations when page loads
