@@ -1,3 +1,97 @@
+// Video functionality
+let videoPlaying = true;
+let videoMuted = false;
+const introVideo = document.getElementById('introVideo');
+const videoPlayIcon = document.getElementById('video-play-icon');
+const videoMuteIcon = document.getElementById('video-mute-icon');
+
+function toggleVideo() {
+    if (videoPlaying) {
+        introVideo.pause();
+        videoPlayIcon.className = 'fas fa-play';
+        videoPlaying = false;
+    } else {
+        introVideo.play();
+        videoPlayIcon.className = 'fas fa-pause';
+        videoPlaying = true;
+    }
+}
+
+function toggleMute() {
+    if (videoMuted) {
+        introVideo.muted = false;
+        videoMuteIcon.className = 'fas fa-volume-up';
+        videoMuted = false;
+    } else {
+        introVideo.muted = true;
+        videoMuteIcon.className = 'fas fa-volume-mute';
+        videoMuted = true;
+    }
+}
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Video loading and error handling
+if (introVideo) {
+    introVideo.addEventListener('loadeddata', () => {
+        console.log('🎥 Video loaded successfully');
+        // Force autoplay with sound
+        introVideo.muted = false;
+        introVideo.volume = 1.0;
+        videoMuted = false;
+        videoMuteIcon.className = 'fas fa-volume-up';
+
+        // Aggressive autoplay attempt
+        const forceAutoplay = () => {
+            introVideo.play().then(() => {
+                console.log('🎵 Video autoplay successful on load!');
+                videoPlaying = true;
+                videoPlayIcon.className = 'fas fa-pause';
+            }).catch(e => {
+                console.log('Autoplay failed on load:', e);
+                // Try again after a short delay
+                setTimeout(() => {
+                    introVideo.play().catch(e2 => {
+                        console.log('Retry autoplay failed:', e2);
+                    });
+                }, 100);
+            });
+        };
+
+        forceAutoplay();
+    });
+
+    introVideo.addEventListener('error', () => {
+        console.error('❌ Video failed to load');
+        // Fallback to static background
+        const videoContainer = document.querySelector('.video-container');
+        if (videoContainer) {
+            videoContainer.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        }
+    });
+
+    // Pause video when not in viewport for performance
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (videoPlaying) introVideo.play();
+            } else {
+                introVideo.pause();
+            }
+        });
+    }, { threshold: 0.1 });
+
+    videoObserver.observe(introVideo);
+}
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -57,12 +151,70 @@ const observer = new IntersectionObserver((entries) => {
 
 // Add fade-in class to elements and observe them
 document.addEventListener('DOMContentLoaded', () => {
-    const elementsToAnimate = document.querySelectorAll('.feature-card, .step, .ai-card, .section-header');
+    const elementsToAnimate = document.querySelectorAll('.feature-card, .step, .ai-card, .section-header, .video-content');
 
     elementsToAnimate.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
+
+    // Initialize video controls
+    if (introVideo) {
+        // Force video to start unmuted
+        introVideo.muted = false;
+        videoMuted = false;
+        videoMuteIcon.className = 'fas fa-volume-up';
+
+        // Set volume to maximum
+        introVideo.volume = 1.0;
+
+        // Force autoplay with sound
+        const playVideoWithSound = async () => {
+            try {
+                // Try multiple approaches to autoplay with sound
+                introVideo.muted = false;
+                introVideo.volume = 1.0;
+
+                // Method 1: Direct play
+                await introVideo.play();
+                console.log('🎵 Video autoplay with sound successful!');
+
+            } catch (error) {
+                console.log('Autoplay blocked, trying alternative methods:', error);
+
+                // Method 2: Try with user gesture simulation
+                try {
+                    // Simulate user interaction
+                    const playPromise = introVideo.play();
+                    if (playPromise !== undefined) {
+                        await playPromise;
+                        console.log('🎵 Video started with alternative method!');
+                    }
+                } catch (error2) {
+                    console.log('All autoplay methods failed:', error2);
+                    // Show play button as fallback
+                    videoPlayIcon.className = 'fas fa-play';
+                    videoPlaying = false;
+                }
+            }
+        };
+
+            // Execute autoplay
+    playVideoWithSound();
+    
+    // Additional autoplay attempts on different events
+    introVideo.addEventListener('canplay', () => {
+        if (!videoPlaying) {
+            introVideo.play().catch(e => console.log('Canplay autoplay failed:', e));
+        }
+    });
+    
+    introVideo.addEventListener('canplaythrough', () => {
+        if (!videoPlaying) {
+            introVideo.play().catch(e => console.log('Canplaythrough autoplay failed:', e));
+        }
+    });
+}
 });
 
 // Typing animation for hero title
@@ -117,7 +269,7 @@ function validateEmail(email) {
 }
 
 // Add loading states to buttons
-document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+document.querySelectorAll('.btn-primary, .btn-secondary, .video-btn').forEach(button => {
     button.addEventListener('click', function (e) {
         if (this.classList.contains('loading')) return;
 
@@ -183,6 +335,20 @@ style.textContent = `
             transform: scale(4);
             opacity: 0;
         }
+    }
+    
+    .loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+    
+    .video-btn {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .video-btn.loading {
+        pointer-events: none;
     }
 `;
 document.head.appendChild(style);
@@ -253,6 +419,30 @@ window.addEventListener('load', () => {
     featureCards.forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
     });
+    
+    // Add loading animation to video
+    if (introVideo) {
+        introVideo.style.opacity = '0';
+        introVideo.style.transition = 'opacity 1s ease-in-out';
+        setTimeout(() => {
+            introVideo.style.opacity = '1';
+        }, 100);
+        
+        // Final autoplay attempt on window load
+        setTimeout(() => {
+            if (!videoPlaying) {
+                introVideo.muted = false;
+                introVideo.volume = 1.0;
+                introVideo.play().then(() => {
+                    console.log('🎵 Video autoplay successful on window load!');
+                    videoPlaying = true;
+                    videoPlayIcon.className = 'fas fa-pause';
+                }).catch(e => {
+                    console.log('Final autoplay attempt failed:', e);
+                });
+            }
+        }, 500);
+    }
 });
 
 // Performance optimization: Debounce scroll events
@@ -282,10 +472,38 @@ document.addEventListener('keydown', (e) => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
     }
+
+    // Space bar to toggle video
+    if (e.key === ' ' && introVideo) {
+        e.preventDefault();
+        toggleVideo();
+    }
 });
 
+// Start video with sound on first user interaction
+let userInteracted = false;
+function startVideoWithSound() {
+    if (!userInteracted && introVideo) {
+        userInteracted = true;
+        introVideo.muted = false;
+        introVideo.volume = 1.0;
+        introVideo.play().then(() => {
+            videoPlaying = true;
+            videoPlayIcon.className = 'fas fa-pause';
+            console.log('🎵 Video started with sound after user interaction');
+        }).catch(e => {
+            console.log('Failed to start video with sound:', e);
+        });
+    }
+}
+
+// Listen for any user interaction to start video with sound
+document.addEventListener('click', startVideoWithSound, { once: true });
+document.addEventListener('touchstart', startVideoWithSound, { once: true });
+document.addEventListener('keydown', startVideoWithSound, { once: true });
+
 // Add focus management for accessibility
-document.querySelectorAll('.btn-primary, .btn-secondary, .download-btn').forEach(button => {
+document.querySelectorAll('.btn-primary, .btn-secondary, .download-btn, .video-btn, .video-control-btn').forEach(button => {
     button.addEventListener('focus', function () {
         this.style.outline = '2px solid var(--primary-color)';
         this.style.outlineOffset = '2px';
@@ -296,5 +514,60 @@ document.querySelectorAll('.btn-primary, .btn-secondary, .download-btn').forEach
     });
 });
 
+// Touch gesture support for mobile
+let touchStartY = 0;
+let touchEndY = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartY = e.changedTouches[0].screenY;
+});
+
+document.addEventListener('touchend', (e) => {
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartY - touchEndY;
+
+    if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+            // Swipe up - scroll down
+            window.scrollBy({
+                top: 100,
+                behavior: 'smooth'
+            });
+        } else {
+            // Swipe down - scroll up
+            window.scrollBy({
+                top: -100,
+                behavior: 'smooth'
+            });
+        }
+    }
+}
+
+// Service Worker registration for PWA capabilities
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
+
+// Add preload for video
+const videoPreload = document.createElement('link');
+videoPreload.rel = 'preload';
+videoPreload.as = 'video';
+videoPreload.href = 'clinic.mp4';
+document.head.appendChild(videoPreload);
+
 console.log('🏥 Clinic website loaded successfully!');
 console.log('📱 Mobile apps available on Google Play and App Store');
+console.log('🎥 Video introduction ready');

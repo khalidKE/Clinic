@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinic - Smart Medical Appointment & Case Management</title>
+    <meta name="description"
+        content="Revolutionary digital platform connecting patients with doctors through AI-powered appointment booking and health management">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -33,6 +37,48 @@
         </div>
     </nav>
 
+    <!-- Video Introduction Section -->
+    <section id="video-intro" class="video-intro">
+        <div class="video-container">
+            <div class="video-content">
+                <h1 class="video-title">
+                    Welcome to the Future of
+                    <span class="gradient-text">Healthcare</span>
+                </h1>
+                <p class="video-description">
+                    Experience seamless medical care with our AI-powered platform
+                </p>
+                <div class="video-buttons">
+                    <button class="btn-primary video-btn" onclick="scrollToSection('home')">
+                        <i class="fas fa-arrow-down"></i>
+                        Explore Platform
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Corner Video Player -->
+            <div class="corner-video-player">
+                <div class="video-wrapper">
+                    <video autoplay loop class="intro-video" id="introVideo" preload="auto" playsinline>
+                        <source src="clinic.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-overlay-corner">
+                        <div class="video-controls-corner">
+                            <button class="video-control-btn-corner" onclick="toggleVideo()" title="Play/Pause">
+                                <i class="fas fa-pause" id="video-play-icon"></i>
+                            </button>
+                            <button class="video-control-btn-corner" onclick="toggleMute()" title="Mute/Unmute">
+                                <i class="fas fa-volume-up" id="video-mute-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
@@ -50,7 +96,7 @@
                         <i class="fas fa-mobile-alt"></i>
                         Get Started
                     </button>
-                    <button class="btn-secondary">
+                    <button class="btn-secondary" onclick="scrollToSection('video-intro')">
                         <i class="fas fa-play"></i>
                         Watch Demo
                     </button>
@@ -453,11 +499,11 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
+                            <span>+1234567890</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Healthcare St, Medical City</span>
+                            <span>123 Healthcare St, Sadat City</span>
                         </div>
                     </div>
                 </div>
