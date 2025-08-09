@@ -541,38 +541,66 @@ document.querySelectorAll('.btn-primary, .btn-secondary, .download-btn, .video-b
     });
 });
 
-// Touch gesture support for mobile
+// Enhanced touch gesture support for mobile
 let touchStartY = 0;
 let touchEndY = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
 document.addEventListener('touchstart', (e) => {
     touchStartY = e.changedTouches[0].screenY;
+    touchStartX = e.changedTouches[0].screenX;
 });
 
 document.addEventListener('touchend', (e) => {
     touchEndY = e.changedTouches[0].screenY;
+    touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
 });
 
 function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartY - touchEndY;
-
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
+    const swipeThreshold = 30; // Reduced threshold for easier swiping
+    const diffY = touchStartY - touchEndY;
+    const diffX = touchStartX - touchEndX;
+    
+    // Only handle vertical swipes (ignore horizontal swipes)
+    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > swipeThreshold) {
+        if (diffY > 0) {
             // Swipe up - scroll down
             window.scrollBy({
-                top: 100,
+                top: 150,
                 behavior: 'smooth'
             });
         } else {
             // Swipe down - scroll up
             window.scrollBy({
-                top: -100,
+                top: -150,
                 behavior: 'smooth'
             });
         }
     }
+}
+
+// Enhanced mobile scrolling performance
+if ('ontouchstart' in window) {
+    // Disable hover effects on touch devices for better performance
+    document.addEventListener('touchstart', function() {}, {passive: true});
+    
+    // Optimize scroll performance on mobile
+    let ticking = false;
+    
+    function updateScroll() {
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateScroll);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick, {passive: true});
 }
 
 // Service Worker registration for PWA capabilities
