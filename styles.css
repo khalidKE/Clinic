@@ -1283,19 +1283,18 @@ section {
         text-align: center;
     }
 
-    /* Hide phone mockup on mobile devices */
+    /* Hide phone mockups on mobile devices */
     .phone-mockup {
         display: none;
     }
 
     .phones-mockup {
-        flex-direction: column;
-        gap: 2rem;
+        display: none;
     }
 
     .phone-1,
     .phone-2 {
-        transform: none;
+        display: none;
     }
 
     .video-controls {
@@ -1446,8 +1445,17 @@ section {
         font-size: 1.6rem;
     }
 
-    /* Hide phone mockup on small mobile devices */
+    /* Hide phone mockups on small mobile devices */
     .phone-mockup {
+        display: none;
+    }
+
+    .phones-mockup {
+        display: none;
+    }
+
+    .phone-1,
+    .phone-2 {
         display: none;
     }
 
@@ -1550,6 +1558,71 @@ html {
 body {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+}
+
+/* Enhanced mobile scrolling */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        -webkit-tap-highlight-color: transparent;
+        overscroll-behavior: smooth;
+        /* Prevent horizontal scroll on mobile */
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* Improve touch scrolling on all scrollable elements */
+    .container,
+    .hero-container,
+    .video-container,
+    .features-grid,
+    .download-content,
+    .footer-content {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: smooth;
+    }
+
+    /* Smooth momentum scrolling for iOS */
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Optimize touch targets for mobile */
+    .btn-primary,
+    .btn-secondary,
+    .video-btn,
+    .download-btn,
+    .video-control-btn-corner {
+        min-height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+    }
+
+    /* Improve text selection on mobile */
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+
+    /* Prevent zoom on input focus for iOS */
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+    }
 }
 
 /* Custom scrollbar for webkit browsers */
